@@ -1,0 +1,18 @@
+version: '3'
+services:
+  shieldfile:
+    build: .
+    image: shieldfile:latest
+    container_name: shieldfile
+    environment:
+      - FB_PORT=8443
+      - FB_ROOT=/data
+      - FB_USER=admin
+      - FB_PASS=secret
+    volumes:
+      - ./data:/data
+      - ./config:/config
+      - ./db/filebrowser.db:/database.db
+    ports:
+      - "8443:8443"
+    restart: unless-stopped
